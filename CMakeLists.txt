@@ -16,6 +16,7 @@ include_directories(
 
 add_library(${PROJECT_NAME}_lib SHARED
     src/icp.cpp
+    src/kmeans.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}_lib
@@ -24,8 +25,14 @@ target_link_libraries(${PROJECT_NAME}_lib
     ${PCL_LIBRARIES}
 )
 
+# TEST ICP
 add_executable(icp_odometry test/icp_odometry.cpp)
 target_link_libraries(icp_odometry
 	${PROJECT_NAME}_lib
 )
 
+# TEST KMEANS
+add_executable(kmeans test/test_kmeans.cpp)
+target_link_libraries(kmeans
+	${PROJECT_NAME}_lib
+)
